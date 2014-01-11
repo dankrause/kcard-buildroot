@@ -12,19 +12,13 @@ sudo apt-get install build-essential bison flex gettext libncurses5-dev texinfo 
 # OR using Yum:
 sudo yum install subversion make gcc ncurses-devel bison flex gawk bc vim-common
 
-# download and extract buildroot 2013.08.1
-wget http://buildroot.uclibc.org/downloads/buildroot-2013.08.1.tar.bz2
-tar -xf buildroot-2013.08.1.tar.bz2
-
 # clone kcard-buildroot
 git clone https://github.com/dankrause/kcard-buildroot.git
 
-# create symlinks from buildroot to kcard-buildroot
-ln -s ../../kcard-buildroot/board/wifisd buildroot-2013.08.1/board/wifisd
-ln -s ../../kcard-buildroot/configs/wifisd_defconfig buildroot-2013.08.1/configs/wifisd_defconfig
-
-# start working with buildroot
-cd buildroot-2013.08.1
+# Update submodules
+cd kcard-buildroot
+git submodule init
+git submodule update
 
 # tell buildroot to start using the buildroot conf file that comes with kcard-buildroot
 make wifisd_defconfig
